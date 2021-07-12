@@ -19,4 +19,5 @@ Route::get('/', function () {
 
 Route::get('/salaries', [\App\Http\Controllers\SalaryController::class, 'index'])->name('salaries');
 Route::get('/calculator', [\App\Http\Controllers\SalaryController::class, 'calc'])->name('calc');
-Route::get('/calculator/show', [\App\Http\Controllers\SalaryController::class, 'show'])->name('show');
+Route::get('/calculator/show', [\App\Http\Controllers\SalaryController::class, 'show']);
+Route::post('/calculator/show', [\App\Http\Controllers\SalaryController::class, 'store']);

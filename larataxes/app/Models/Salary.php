@@ -92,4 +92,12 @@ class Salary extends Model
 
         return 0;
     }
+
+    public function getSalaryOnHandsAttribute()
+    {
+        return $this->oklad
+            - $this->getOpvAttribute()
+            - $this->getIpnAttribute()
+            - $this->getVosmsAttribute();
+    }
 }

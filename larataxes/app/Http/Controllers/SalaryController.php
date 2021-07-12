@@ -10,6 +10,7 @@ class SalaryController extends Controller
     public function index()
     {
         $salaries = Salary::all()->sortByDesc('id');
+
         return view('salaries', compact('salaries'));
     }
 
@@ -21,6 +22,17 @@ class SalaryController extends Controller
     public function show(StoreSalaryRequest $request)
     {
         $salary = Salary::make($request->validated());
-        return view('show', compact('salary'));
+        return response()->json([
+            'corrections' => $salary->corrections,
+            'opv' => $salary->opv,
+            'ipn' => $salary->ipn,
+            'vosms' => $salary->vosms,
+            'onHands' => $salary->salaryOnHands
+        ]);
+    }
+
+    public function store(StoreSalaryRequest $request) {
+        $salary = Salary::create($request->validated());
+        return $salary;
     }
 }
